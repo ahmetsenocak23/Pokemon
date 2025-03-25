@@ -5,6 +5,8 @@ from logic import Pokemon
 from logic import Wizard
 from logic import Fighter
 import random
+from datetime import timedelta, datetime 
+import time
 
 # Bot için niyetleri (intents) ayarlama
 intents = discord.Intents.default()  # Varsayılan ayarların alınması
@@ -15,15 +17,15 @@ intents.guilds = True                # Botun sunucularla (loncalar) çalışmas�
 # Tanımlanmış bir komut önekine ve etkinleştirilmiş amaçlara sahip bir bot oluşturma
 bot = commands.Bot(command_prefix='!', intents=intents)
 
+
 # Bot çalışmaya hazır olduğunda tetiklenen bir olay
 @bot.event
 async def on_ready():
     print(f'Giriş yapıldı:  {bot.user.name}')  # Botun adını konsola çıktı olarak verir
-
-# '!go' komutu
-
-
-
+    kanal = bot.get_channel(1211278499751403570)
+    if kanal:
+        await kanal.send('Merhaba,👋  Eğer Komutların Nasıl Çalıştığını Öğrenmek İstiyorsan **!komutlar** Yazabilirsin 😉 🙂')
+    
 
 
 
@@ -82,6 +84,12 @@ async def info(ctx):
             await ctx.send(embed=embed)  # Görüntülü gömülü mesajı göndeririz
     else:
         await ctx.send("Pokémon görüntüsü yüklenemedi.")  # Görüntü yüklenemezse hata mesajı veririz
+
+
+
+@bot.command()
+async def komutlar(ctx):
+    await ctx.send("Kullanabileceğiniz komutlar:\n\n1.) **!go** bir pokemon almanızı sağlar\n\n2.) **!attack @_SALDIRMAK İSTEDİĞİNİZ KİŞİYİ SEÇİN_** Şeklinde bir kullanımı vardır ve istediğiniz kişiye saldırmanızı sağlar\n\n3.) **!info** pokemonunuzun **İSMİNİ** , **FOTOĞRAFINI** ve o anki **SAĞLIK** durumunu ve **GÜCÜNÜ** öğrenmenizi sağlar\n\n4.) **!feed** Pokemonunuzu besleyip canını arttırabilirsiniz")
 
 
 @bot.command()
