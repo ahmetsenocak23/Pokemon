@@ -22,7 +22,7 @@ bot = commands.Bot(command_prefix='!', intents=intents)
 @bot.event
 async def on_ready():
     print(f'Giriş yapıldı:  {bot.user.name}')  # Botun adını konsola çıktı olarak verir
-    kanal = bot.get_channel(1211278499751403570)
+    kanal = bot.get_channel(KANAL_NO)
     if kanal:
         await kanal.send('Merhaba,👋  Eğer Komutların Nasıl Çalıştığını Öğrenmek İstiyorsan **!komutlar** Yazabilirsin 😉 🙂')
     
